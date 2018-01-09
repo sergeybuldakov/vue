@@ -1,0 +1,10 @@
+{
+  "name": "Vue",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~4.16.2",
+    "vue": "~2.5.13",
+    "vue-router": "~3.0.1",
+    "ejs": "~2.5.7"
+  }
+}

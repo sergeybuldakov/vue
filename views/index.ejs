@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <!-- используйте компонент router-link для создания ссылок -->
+        <!-- входной параметр `to` определяет путь для перехода -->
+        <!-- `<router-link>` по умолчанию преобразуется в тег `<a>` -->
+        <router-link to="/foo" style="padding: 5px; border: 1px solid #e2e2e2; border-radius: 50px; background-color: aliceblue">Go to Foo</router-link>
+        <router-link to="/bar" style="padding: 5px; border: 1px solid #e2e2e2; border-radius: 50px; background-color: aliceblue">Go to Bar</router-link>
+    </p>
+    <!-- отображение компонента, для которого совпал путь -->
+    <router-view></router-view>
+</div>
+
+<script src="js/vue/dist/vue.js"></script>
+<script src="js/vue-router/dist/vue-router.js"></script>
+<script>
+    const Foo = { template: '<img src="http://www.bugaga.ru/uploads/posts/2017-03/1489052030_kotik-hosiko-12.jpg">' }
+    const Bar = { template: '<img src="https://i.ytimg.com/vi/OCO3qYvqQ8w/hqdefault.jpg">' }
+
+    // 2. Определение путей
+    // Каждый путь должен указывать на компонент
+    // "Компонентом" может быть как созданный через `Vue.extend()`
+    // полноценный конструктор, так и просто объект с настройками компонента
+    // Вложенные пути будут рассмотрены далее.
+    const routes = [
+        { path: '/foo', component: Foo },
+        { path: '/bar', component: Bar }
+    ]
+
+    // 3. Создаём экземпляр роутера с опцией `routes`
+    // Можно передать и другие опции, но пока не будем усложнять
+    const router = new VueRouter({
+        mode: 'history',
+        routes // сокращение от `routes: routes`
+    })
+
+    // 4. Создаём и монтируем корневой экземпляр Vue нашего приложения.
+    // Удостоверьтесь, что передали экземпляр роутера в опции `router`,
+    // что позволит приложению знать о его наличии
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+    Vue.component('my-checkbox', {
+        template: '#checkbox-template',
+        data() {
+            return {
+                checked: false,
+                title: 'Check me'
+            }
+        },
+        methods: {
+            check() {
+                this.checked = !this.checked;
+            }
+        }
+    });
+</script>
+</body>
+</html>
